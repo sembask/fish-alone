@@ -69,7 +69,6 @@ func start_fishing():
 
 		fishing_timer.start()
 	elif peixe_detectado and Dados.acertou_peixe:
-		recolhendo_vara = true
 		recolher_vara()
 
 func _on_fishing_timer_timeout():
@@ -93,15 +92,17 @@ func cancel_fishing():
 	$AnimatedSprite2D.play("parado")
 
 func recolher_vara():
+	recolhendo_vara = true
 	get_parent().hud_scene_instance.atualizar_peixes()
 	remove_child(sistema_de_pesca_scene_instance)
 	$AnimatedSprite2D.play("recolher_vara")
 	await $AnimatedSprite2D.animation_finished
 	#if cancelled_fishing and recolhendo_vara:
-		#print("entrou no return")
-		#cancelled_fishing = false
-		#recolhendo_vara = false
-		#return 
+	if cancelled_fishing:
+		print("entrou no return")
+		cancelled_fishing = false
+		recolhendo_vara = false
+		return 
 		
 	print("tocou dps do await")
 	peixe_detectado = false

@@ -215,7 +215,7 @@ script = ExtResource("1_e7434")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-30, -32)
 sprite_frames = SubResource("SpriteFrames_v42cd")
-animation = &"lancar_vara"
+animation = &"peixe_na_linha"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

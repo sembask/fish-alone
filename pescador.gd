@@ -15,6 +15,7 @@ var sistema_de_pesca_scene_instance
 @onready var sistema_de_pesca_scene = preload("res://sistema_de_pesca.tscn")
 var cancelled_fishing = false  
 var recolhendo_vara = false
+var animmation_finish = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("parado")
@@ -65,20 +66,18 @@ func start_fishing():
 		is_fishing = true
 		$AnimatedSprite2D.play("lancar_vara")
 		Dados.personagem_position.y = position.y
-		print("Pescando...")
 
 		fishing_timer.start()
 	elif peixe_detectado and Dados.acertou_peixe:
 		recolher_vara()
 
 func _on_fishing_timer_timeout():
-	print("Peixe detectado! Clique para capturar.")
 	$AnimatedSprite2D.play("peixe_na_linha")
 	peixe_detectado = true
 	add_child(sistema_de_pesca_scene_instance)
 
 func cancel_fishing():
-	print("Pesca cancelada devido ao movimento.")
+	animmation_finish = false
 	is_fishing = false
 	peixe_detectado = false
 	Dados.acertou_peixe = false
@@ -92,23 +91,22 @@ func cancel_fishing():
 	$AnimatedSprite2D.play("parado")
 
 func recolher_vara():
-	recolhendo_vara = true
+	animmation_finish = true
+	print("lalalala", animmation_finish)
 	get_parent().hud_scene_instance.atualizar_peixes()
 	remove_child(sistema_de_pesca_scene_instance)
 	$AnimatedSprite2D.play("recolher_vara")
+	await recolher_animacao()
+	print("balela", animmation_finish)
+	if animmation_finish:
+		print("tocou dps do await")
+		peixe_detectado = false
+		is_fishing = false
+		Dados.acertou_peixe = false
+		print("Pegou o peixe")
+		if fishing_timer.is_stopped() == false:
+			fishing_timer.stop()	
+		print("final - recolher_vara")
+
+func recolher_animacao() -> void:
 	await $AnimatedSprite2D.animation_finished
-	#if cancelled_fishing and recolhendo_vara:
-	if cancelled_fishing:
-		print("entrou no return")
-		cancelled_fishing = false
-		recolhendo_vara = false
-		return 
-		
-	print("tocou dps do await")
-	peixe_detectado = false
-	is_fishing = false
-	Dados.acertou_peixe = false
-	print("Pegou o peixe")
-	if fishing_timer.is_stopped() == false:
-		fishing_timer.stop()	
-	

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs7fmwpultoaj"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_37dlm"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_37dlm")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Peixes coletados: 0"

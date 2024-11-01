@@ -17,7 +17,7 @@ func _ready() -> void:
 	hud_scene_instance = hud_scene.instantiate()
 	add_child(hud_scene_instance)
 	
-	pescador_scene_instance.position = Dados.personagem_position
+	pescador_scene_instance.position = Dados.personagem_position_inicial
 	_MainWindow.borderless = true
 	_MainWindow.transparent_bg = true
 	_MainWindow.transparent = true

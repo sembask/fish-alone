@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://fsctufohd5tc"]
+[gd_scene load_steps=31 format=3 uid="uid://fsctufohd5tc"]
 
 [ext_resource type="Script" path="res://pescador.gd" id="1_e7434"]
 [ext_resource type="Texture2D" uid="uid://cj27s05ec3hib" path="res://characters/old man idle state no line-Sheet.png" id="2_0s3w7"]
@@ -28,10 +28,6 @@ region = Rect2(240, 0, 60, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_14qe2"]
 atlas = ExtResource("2_v2mao")
 region = Rect2(300, 0, 60, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0x0e"]
-atlas = ExtResource("2_v2mao")
-region = Rect2(360, 0, 60, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnl2m"]
 atlas = ExtResource("2_0s3w7")
@@ -127,7 +123,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_14qe2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v0x0e")
+"texture": SubResource("AtlasTexture_qt22r")
 }],
 "loop": false,
 "name": &"lancar_vara",
@@ -215,7 +211,9 @@ script = ExtResource("1_e7434")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-30, -32)
 sprite_frames = SubResource("SpriteFrames_v42cd")
-animation = &"peixe_na_linha"
+animation = &"lancar_vara"
+frame = 6
+frame_progress = 1.0
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
